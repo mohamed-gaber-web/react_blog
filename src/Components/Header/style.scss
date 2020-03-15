@@ -1,0 +1,51 @@
+$second_color: #f17170;
+
+.parent__header{
+    display: flex;
+    justify-content: space-around;
+    background: #fff;
+    box-shadow: 1px 4px 4px 0px #f3f3f5;
+    padding: 15px 0;
+
+    .menu{
+        ul.nav{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+
+            li{
+                margin: 0 15px;
+                font-size: 17px;
+                font-weight: 600;
+                margin-top: 5px;
+
+                a{
+                    color: #000;
+                
+                    &.active{
+                        color: #000;
+                        border-bottom: 3px solid $second_color;
+                        padding-bottom: 6px;
+                    }
+                }
+
+                
+            }
+        }
+    }
+
+    .logo{
+
+        h1{
+        font-size: 30px;
+        font-weight: bold;
+        text-transform: uppercase;
+
+        b{
+            color: $second_color;
+        }
+    }
+
+    }
+}
