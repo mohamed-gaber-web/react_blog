@@ -1,47 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.scss';
 
+import axios from "axios";
+
+
 const Posts = props => { 
+
+    const [posts, setPosts] = useState([]);
+    
+
+    useEffect(() => { 
+        axios.get('https://blog-27edb.firebaseio.com/posts.json').then(res => { 
+
+            const arrResults = Object.keys(res.data).map(post => {
+                return { id: post, allPosts: res.data[post] }
+            });
+
+            setPosts(arrResults)
+
+            // console.log(arrResults);
+            // console.log(Object.keys(res.data)); // id
+
+        }).catch(err => { 
+            console.log(err)
+        });
+    }, [])
+
     return (
         <div className="parent_post row">
-            <div className="col-lg-4">
-                <img src="https://www.sitemappro.com/wp-content/uploads/2018/10/Sitemaps-of-Your-Blog.jpg" alt="" />
-                <h3> THE TITLE </h3>
-                <div className="text-info">
-                    <ul className="list-unstyled list-text">
-                        <li> By: <b>Joanna Wellick</b> </li>
-                        <li> December 5, 2018 </li>
-                        <li> 1.5K views </li>
-                    </ul>
-                </div> 
-                <p> Structured gripped tape invisible moulded cups for sauppor firm hold strong powermesh front liner sport detail. Warmth comfort… </p>
-            </div>
+            {
+                posts.map(post => { 
+                   return <div className="col-lg-4" key={post.id}>
+                        <img src={post.allPosts.image} alt="" />
+                        <h3> {post.allPosts.title} </h3>
+                        <div className="text-info">
+                            <ul className="list-unstyled list-text">
+                                <li> By: <b>Joanna Wellick</b> </li>
+                                <li> {post.allPosts.date} </li>
+                                <li> 1.5K views </li>
+                            </ul>
+                        </div> 
+                        <p> {post.allPosts.content.substr(0, 123) + "..."} </p>
+                    </div>
+                })
+            }
 
-            <div className="col-lg-4">
-                <img src="https://www.sitemappro.com/wp-content/uploads/2018/10/Sitemaps-of-Your-Blog.jpg" alt="" />
-                <h3> THE TITLE </h3>
-                <div className="text-info">
-                    <ul className="list-unstyled list-text">
-                        <li> By: <b>Joanna Wellick</b> </li>
-                        <li> December 5, 2018 </li>
-                        <li> 1.5K views </li>
-                    </ul>
-                </div> 
-                <p> Structured gripped tape invisible moulded cups for sauppor firm hold strong powermesh front liner sport detail. Warmth comfort… </p>
-            </div>
 
-            <div className="col-lg-4">
-                <img src="https://www.sitemappro.com/wp-content/uploads/2018/10/Sitemaps-of-Your-Blog.jpg" alt="" />
-                <h3> THE TITLE </h3>
-                <div className="text-info">
-                    <ul className="list-unstyled list-text">
-                        <li> By: <b>Joanna Wellick</b> </li>
-                        <li> December 5, 2018 </li>
-                        <li> 1.5K views </li>
-                    </ul>
-                </div> 
-                <p> Structured gripped tape invisible moulded cups for sauppor firm hold strong powermesh front liner sport detail. Warmth comfort… </p>
-            </div>
         </div>
     );
 }
