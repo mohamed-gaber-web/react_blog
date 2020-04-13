@@ -6,6 +6,14 @@
         text-transform: capitalize;
         font-size: 21px;
         margin: 20px 0; 
+        color: #000;
+
+        a{
+            color: #000; 
+            &:hover{
+                text-decoration: none; color: #66676D;
+            }
+        }
     }
 
     img{
@@ -33,4 +41,8 @@
         font-size: 16px;
         line-height: 1.5;
     }
+}
+
+@media(max-width: 1200px) {
+    .parent_post img{width: 100%; height: auto;}
 }

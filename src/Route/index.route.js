@@ -7,7 +7,7 @@ export const RoutePath = () => {
     return(
         <Switch>
             <Route path="/" exact component={HomePage} />
-            <Route path="/addpost" exact  component={AddPost} />
+            <Route path="/admin/addpost" exact  component={AddPost} />
         </Switch>
     );
 }

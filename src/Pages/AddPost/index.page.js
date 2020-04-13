@@ -7,7 +7,7 @@ const AddPost = (props) => {
     const [titleVal, setTitleVal] = useState("");
     const [imageVal, setImageVal] = useState("");
     const [contentVal, setContentVal] = useState("");
-    const date = new Date();
+    const date = new Date().toLocaleDateString();
 
     const addPost = () => {
         axios.post("https://blog-27edb.firebaseio.com/posts.json",
